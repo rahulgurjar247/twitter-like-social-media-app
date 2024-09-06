@@ -1,9 +1,12 @@
 import Navbar from "./navbar/navbar";
+import Login from "./pages/login";
+import Signup from "./pages/Signup";
 
 function App() {
   return (
     <>
-      <Navbar />
+      <Login />
+      <Signup />
     </>
   );
 }
