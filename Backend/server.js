@@ -1,9 +1,9 @@
 const express = require("express");
 require("dotenv").config();
 const connectTOMongo = require("./model/connectToMongo");
-
-const app = express();
-const port = process.env.PORT || 8000;
+const userRoute = require("./Routes/userRoutes");
+const bodyParser = require("body-parser");
+const cors = require("cors");
 
 connectTOMongo(process.env.mongo_url)
   .then(() => {
@@ -13,11 +13,23 @@ connectTOMongo(process.env.mongo_url)
     console.log("server error he:", err);
   });
 
-app.get("/", (req, res) => {
-  console.log("get req on server");
-  res.json({ msg: "its working fine" });
-});
+const app = express();
+const port = process.env.PORT || 8000;
 
+// middleware cors & json
+app.use(express.json());
+app.use(
+  cors({
+    origin: true,
+    Credential: true,
+  })
+);
+app.use(bodyParser.json());
+
+app.use("/" , userRoute);
+
+
+// server listening
 app.listen(port, () => {
   console.log(`server is running on port ${port}`);
 });
