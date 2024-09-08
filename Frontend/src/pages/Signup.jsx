@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { toast } from "react-toastify";
 import { useState } from "react";
+import axios from "axios";
 
 const Signup = () => {
   const [signupdata, setsignupdata] = useState({
@@ -47,12 +48,12 @@ const Signup = () => {
     e.preventDefault();
     try {
       if (formValidation()) {
-        await new Promise((resolve, reject) => {
-          setTimeout(() => {
-            console.log(signupdata);
-            resolve();
-          }, 2000);
+        const response = await axios({
+          method: "POST",
+          url: "http://localhost:3000/signup",
+          data: signupdata,
         });
+        console.log(response.data);
         Formclear();
       } else {
         return Error("form is Empty");
