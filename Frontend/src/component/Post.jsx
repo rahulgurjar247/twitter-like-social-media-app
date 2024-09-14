@@ -1,11 +1,10 @@
 import React from "react";
 import dev from "../assets/developer.png";
+import ProfileImgPost from "./ProfileImgPost";
 const Post = () => {
   return (
     <div className="w-full  border-b flex gap-2 p-4 text-gray-600 text-left">
-      <div>
-        <img src={dev} alt="" className="w-16 rounded-xl" />
-      </div>
+      <ProfileImgPost />
       <div>
         <div className="flex gap-1">
           <div className="user font-semibold">Rahulgurjar</div>
