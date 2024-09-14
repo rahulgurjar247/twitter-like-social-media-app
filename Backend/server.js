@@ -2,6 +2,7 @@ const express = require("express");
 require("dotenv").config();
 const connectTOMongo = require("./model/connectToMongo");
 const userRoute = require("./Routes/userRoutes");
+const postRoute = require("./Routes/postRoutes");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
@@ -21,12 +22,14 @@ app.use(express.json());
 app.use(
   cors({
     origin: true,
-    Credential: true,
+    credentials: true,
   })
 );
 app.use(bodyParser.json());
 
-app.use("/" , userRoute);
+app.use("/", userRoute);
+app.use("/Posts", postRoute);
+
 
 
 // server listening
