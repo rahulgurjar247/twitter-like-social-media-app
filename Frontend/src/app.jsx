@@ -5,8 +5,16 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/ReactToastify.css";
 import { Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/home";
+import { useEffect } from "react";
+// import jwt from "jsonwebtoken";
 
 function App() {
+  useEffect(() => {
+    const cookiedata = window.document.cookie;
+    const cookie = cookiedata.split("=")[1];
+    // const userdata = jwt.verify(cookie, "Commando247@");
+    // console.log(userdata);
+  }, []);
   return (
     <>
       <Routes>
