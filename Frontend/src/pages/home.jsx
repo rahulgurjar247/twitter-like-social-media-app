@@ -1,8 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios, { all } from "axios";
 import Post from "../component/Post";
 import PostEditor from "../component/postEditor";
 
 const Home = () => {
+  const [postdata, setPostData] = useState(null);
+  const [loding, setloding] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://localhost:3000/posts");
+        setPostData(response.data.posts);
+        consle.log();
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setloding(false);
+      }
+    };
+    fetchData();
+  }, []);
+
+  console.log(postdata);
+
   return (
     <div className="flex flex-row h-[100vh] w-[calc(100vw-4px)]  ">
       <div className="w-[20%] text-center pt-10 p-2 flex flex-col gap-6  bg-slate-300 overflow-hidden font-semibold fixed h-[100vh] cursor-default">
@@ -29,20 +51,10 @@ const Home = () => {
          max-md:w-[calc(100%-20%)] z-10 overflow-y-scroll"
       >
         <PostEditor />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
+        {postdata &&
+          postdata.map((p) => {
+            return <Post postdata={p.postdata} key={p._id} />;
+          })}
         <Post />
       </div>
 
