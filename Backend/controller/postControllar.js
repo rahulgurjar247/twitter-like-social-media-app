@@ -1,30 +1,22 @@
 const Post = require("../model/postModel");
+
 async function handlePostCreate(req, res) {
-  const { postid, postdata, createby, likes } = {
-    postid: Math.floor(Math.random() * 1000000 + 1),
-    createby: "66d9d877e09c53dbcf00b0d2",
-    postdata:
-      "rahul gurjar is hear do you know that i am a full stack devloper with expertise in react.js express.js Node.js Mongodb Rest API Problem solving ",
-    likes: 100,
-  };
+  const {
+    postdata,
+    postid = Math.floor(Math.random() * 1000000 + 1),
+    createby = "66d9d877e09c53dbcf00b0d2",
+  } = req.body;
 
   try {
-    const postExits = await Post.findOne({ postid });
-    if (!postExits) {
-      await Post.create({ postid, createby, postdata, likes });
-      console.log("Post create sucessfully");
-      res
-        .json({
-          msg: "Post create successfully ",
-          success: true,
-        })
-        .status(201);
-      return;
-    }
-    res.json({
-      msg: "post already exits",
-      success: false,
-    });
+    await Post.create({ postid, createby, postdata });
+    console.log("Post create sucessfully");
+    res
+      .json({
+        msg: "Post create successfully ",
+        success: true,
+      })
+      .status(201);
+    return;
   } catch (err) {
     console.log("error message", err);
     res.json({
@@ -48,6 +40,7 @@ async function handleGetAllPost(req, res) {
   res.json({
     posts,
     msg: "get all post routes",
+    success: true,
   });
 }
 
