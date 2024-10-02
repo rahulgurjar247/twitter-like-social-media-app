@@ -59,11 +59,12 @@ const PostEditor = () => {
           <textarea
             name="postdata"
             id="writeMessage"
-            className="w-full h-auto outline-none resize-none overflow-hidden"
+            className="w-full h-auto outline-none resize-none overflow-hidden font-mono"
             spellCheck="false"
             ref={Message}
             value={post.postdata}
             onChange={handlePost}
+            placeholder="What's happening?"
           ></textarea>
         </div>
         <div className="">

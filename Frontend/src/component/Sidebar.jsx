@@ -1,10 +1,11 @@
 import React from "react";
+import Logo from "./Logo";
 
 const Sidebar = () => {
   return (
-    <div className="w-[25%] text-center pt-5 p-2    overflow-hidden font-semibold fixed h-[100vh] cursor-default z-50 flex justify-center">
+    <div className="w-[25%] text-center pt-5 p-2 font-semibold fixed h-[100vh] cursor-default z-50 flex justify-center">
       <div className="w-[70%] flex flex-col gap-5">
-        <div className="">Logo</div>
+        <Logo />
         <div className="">Home</div>
         <div className="">Explore</div>
         <div className="">Notification</div>

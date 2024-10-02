@@ -1,7 +1,9 @@
 *{
   margin: 0;
   padding: 0;
-  font-family:sans-serif,'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family:monospace;
   font-size: 16px;
-  font-display: swap;
+  font-weight: 400;
+  /* background-color: rgba(21, 32, 43, 1.00); */
+  font-display: swap;  
 }
